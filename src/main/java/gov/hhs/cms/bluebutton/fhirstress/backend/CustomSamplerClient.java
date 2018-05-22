@@ -50,7 +50,7 @@ public abstract class CustomSamplerClient extends AbstractJavaSamplerClient {
 	@Override
 	public Arguments getDefaultParameters() {
 		Arguments defaultParameters = new Arguments();
-		defaultParameters.addArgument(PARAM_SERVER, "https://fhir.backend.bluebutton.hhsdevcloud.us/baseDstu3");
+		defaultParameters.addArgument(PARAM_SERVER, "https://internal-tscw10elb01-336773807.us-east-1.elb.amazonaws.com:7443/baseDstu3");
 		defaultParameters.addArgument(KEYSTORE_DIR, "/opt/fhir_stress/dev/ssl-stores");
 		defaultParameters.addArgument(PROXY_HOST, "null");
 		defaultParameters.addArgument(PROXY_PORT, "0");

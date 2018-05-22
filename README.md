@@ -73,11 +73,33 @@ retrieve the serial number use the following steps:
 
 ## Running the tests
 
-These tests use scalable EC2 instances to execute a jmeter test within the AWS 
-environment.  You are currently using fixed servers and will require your username 
-and password to execute.  Change to the _ansible_ subdirectory and use the following
-command line to execute the tests:
+### Docker
+These tests use scalable EC2 instances launched from a Docker image to execute 
+a jmeter test within the AWS environment.  To build the Docker image, change to
+the directory containing the __Dockerfile__ and run the following command:
 
+    docker build -t <docker image name>:<docker image version> .
+
+Use the image name and version when launching the docker image as described
+below.
+
+The test is currently configrued to mount local volumes that contain the needed 
+test environment and code.  This will most likely change once ported to a Jenkins 
+server environment.  Here is an example command line that can be used to launch 
+the Docker image:
+
+    docker run --name test -it \
+          -e AWS_PROFILE=bbfhir \
+          -v <local fhir-stress-test directory>:/root/fhir-stress-test \
+          -v <local key pem file>:/root/.ssh/<key pem file> \
+          -v <local aws credentials> \
+          <docker image name>:<docker image version>
+
+Using the __-it__ command line parameter will launch the image in interactive
+mode.  You will see a command prompt where you can execute the tests using the
+following commands:
+
+    cd /root/fhir-stress-test/ansible
     ansible-playbook fhir-stress-test.yml --private_key=<key pem file> -e "@extravars.yml"
 
 This will execute the jmeter tests within the bb-fhir AWS enrionment.  To

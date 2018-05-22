@@ -9,7 +9,7 @@ test_lib: "../target/fhir-stress-test-0.1.0-SNAPSHOT-uber.jar"
 # location of local jmeter test script
 test_plan: "../jmeter-project/jmeter-fhir-test.jmx"
 # location of local keystore used in test
-test_keystore: "../dev/ssl-stores/client.keystore"
+test_keystore: "../dev/ssl-stores/perftest.keystore"
 # remote directory to store jmeter test
 remote_test_dir: "/opt/fhir_stress"
 # location of local jmeter properties file overrides
@@ -27,7 +27,7 @@ jmeter_server_rmi_local_port: "{{ vault_jmeter_server_rmi_local_port }}"
 # jmeter client remote method invocation(RMI) port, used for jmeter client communication
 jmeter_client_rmi_local_port: "{{ vault_jmeter_client_rmi_local_port }}"
 # URI of FHIR server under test
-fhir_server: "https://fhir.backend.bluebutton.hhsdevcloud.us/baseDstu3"
+fhir_server: "https://internal-tscw10elb01-336773807.us-east-1.elb.amazonaws.com:7443/baseDstu3/"
 
 # NOTE: As configured, a sampler thread will run until the time duration has elapsed, the thread_loop count is ignored because continue_forever is set to true.
 # Number of threads within the JMeter Thread Group (https://jmeter.apache.org/api/org/apache/jmeter/threads/AbstractThreadGroup.html#NUM_THREADS)

@@ -7,7 +7,7 @@ not work**:
 
     $ openssl x509 -outform der -in keypair.pem -out keypair.der
     $ keytool -import -alias test -file keypair.der -keystore client.keystore
-    $ keytool -list -v client.keystore
+    $ keytool -list -v -keystore client.keystore
 
       Keystore type: JKS
       Keystore provider: SUN
@@ -25,7 +25,7 @@ java key store file:
 
     $ openssl pkcs12 -export -inkey keypair.pem -in keypair.pem -name test -out test.p12
     $ keytool -importkeystore -srckeystore test.p12 -srcstoretype pkcs12 -destkeystore client.keystore
-    $ keytool -list -v client.keystore
+    $ keytool -list -v -keystore client.keystore
 
       Keystore type: JKS
       Keystore provider: SUN
