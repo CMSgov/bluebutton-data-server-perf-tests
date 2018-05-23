@@ -32,7 +32,7 @@ public class FhirClientIT extends TestCase {
 	 * Test FHIR server connectivity
 	 */
 	public void testFhirClient() {
-		IGenericClient client = FhirClient.create("https://internal-tscw10elb01-336773807.us-east-1.elb.amazonaws.com:7443/baseDstu3",
+		IGenericClient client = FhirClient.create("https://internal-tscw10elb01-336773807.us-east-1.elb.amazonaws.com:443/baseDstu3",
 				"./dev/ssl-stores");
 		Patient patient = client.read().resource(Patient.class).withId("20140000005499").execute();
 		assertEquals("Doe", patient.getName().get(0).getFamily());

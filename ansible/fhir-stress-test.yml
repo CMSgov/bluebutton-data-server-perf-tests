@@ -6,7 +6,7 @@
 
   vars_prompt:
     - name: mfa
-      prompt: "What is the MFA code for {{ mfa_sn }}?"
+      prompt: "What is your MFA code? "
       private: no
 
   vars:

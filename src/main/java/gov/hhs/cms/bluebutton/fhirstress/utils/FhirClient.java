@@ -97,7 +97,7 @@ public final class FhirClient {
 			// Load the java keystore
 			final KeyStore keystore = KeyStore.getInstance("JKS");
 			try (final InputStream is = new FileInputStream(
-					getClientKeyStorePath(clientKeystoreDirText, "client.keystore").toFile())) {
+					getClientKeyStorePath(clientKeystoreDirText, "perftest.keystore").toFile())) {
 				keystore.load(is, JKS_PASSWORD);
 			}
 			final KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());

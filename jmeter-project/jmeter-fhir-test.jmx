@@ -9,7 +9,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="fhir_server" elementType="Argument">
             <stringProp name="Argument.name">fhir_server</stringProp>
-            <stringProp name="Argument.value">${__P(fhir_server,https://internal-tscw10elb01-336773807.us-east-1.elb.amazonaws.com:7443/baseDstu3)}</stringProp>
+            <stringProp name="Argument.value">${__P(fhir_server,https://internal-tscw10elb01-336773807.us-east-1.elb.amazonaws.com:443/baseDstu3)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="keystore_dir" elementType="Argument">
@@ -19,12 +19,12 @@
           </elementProp>
           <elementProp name="proxy_host" elementType="Argument">
             <stringProp name="Argument.name">proxy_host</stringProp>
-            <stringProp name="Argument.value">${__P(proxy_host,nat)}</stringProp>
+            <stringProp name="Argument.value">${__P(proxy_host,null)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="proxy_port" elementType="Argument">
             <stringProp name="Argument.name">proxy_port</stringProp>
-            <stringProp name="Argument.value">${__P(proxy_port,3128)}</stringProp>
+            <stringProp name="Argument.value">${__P(proxy_port,0)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="riffile" elementType="Argument">
