@@ -9,7 +9,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="fhir_server" elementType="Argument">
             <stringProp name="Argument.name">fhir_server</stringProp>
-            <stringProp name="Argument.value">${__P(fhir_server,https://internal-tscw10elb01-336773807.us-east-1.elb.amazonaws.com:443/baseDstu3)}</stringProp>
+            <stringProp name="Argument.value">${__P(fhir_server,https://internal-tscw10elb01-336773807.us-east-1.elb.amazonaws.com/baseDstu3)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="keystore_dir" elementType="Argument">
