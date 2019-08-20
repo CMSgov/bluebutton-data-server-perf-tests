@@ -5,7 +5,5 @@
 -Dserver.rmi.localport={{ jmeter_server_rmi_local_port }} \
 -Dclient.rmi.localport={{ jmeter_client_rmi_local_port }} \
 -Dserver_port={{ jmeter_server_port }} \
--H {{ vault_proxy_host }} \
--P {{ vault_proxy_port }} \
 -j {{ remote_test_dir }}/log-jmeter.txt \
 &> {{ remote_test_dir }}/log-jmeter-console.txt

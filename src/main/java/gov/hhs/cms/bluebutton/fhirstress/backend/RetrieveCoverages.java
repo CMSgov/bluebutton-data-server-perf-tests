@@ -6,7 +6,7 @@ import org.hl7.fhir.dstu3.model.Coverage;
 import org.hl7.fhir.dstu3.model.ExplanationOfBenefit;
 
 import gov.hhs.cms.bluebutton.fhirstress.utils.BenefitIdManager;
-import gov.hhs.cms.bluebutton.fhirstress.utils.BenefitIdMgr;
+import gov.hhs.cms.bluebutton.fhirstress.utils.CsvBenefitIdManager;
 import gov.hhs.cms.bluebutton.server.app.stu3.providers.TransformerUtils;
 
 /**
@@ -22,7 +22,7 @@ public final class RetrieveCoverages extends CustomSamplerClient {
 	@Override
 	public void setupTest(JavaSamplerContext context) {
 		super.setupTest(context);
-		bim = new BenefitIdMgr(1, 1, 10000, "100", "%05d");
+		bim = new CsvBenefitIdManager();
 	}
 
 	/**
