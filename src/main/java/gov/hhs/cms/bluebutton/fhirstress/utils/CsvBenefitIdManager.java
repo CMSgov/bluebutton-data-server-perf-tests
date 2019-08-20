@@ -1,9 +1,11 @@
 package gov.hhs.cms.bluebutton.fhirstress.utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.csv.CSVFormat;
@@ -14,6 +16,7 @@ import com.google.common.base.Strings;
 
 public class CsvBenefitIdManager implements BenefitIdManager {
 	CSVParser parser;
+	List<CSVRecord> list;
 	Iterator<CSVRecord> i;
 	File f;
 
@@ -24,6 +27,12 @@ public class CsvBenefitIdManager implements BenefitIdManager {
 	public CsvBenefitIdManager(String prefix) {
 		f = Paths.get("/usr/local/bluebutton-jmeter-service/" + (Strings.isNullOrEmpty(prefix) ? "" : prefix + "-")
 				+ "bene-ids.csv").toFile();
+		try {
+			parser = CSVParser.parse(f, Charset.defaultCharset(), CSVFormat.DEFAULT);
+			list = parser.getRecords();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		init();
 	}
 
@@ -34,8 +43,7 @@ public class CsvBenefitIdManager implements BenefitIdManager {
 
 	private void init() {
 		try {
-			parser = CSVParser.parse(f, Charset.defaultCharset(), CSVFormat.DEFAULT);
-			i = parser.iterator();
+			i = list.iterator();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
