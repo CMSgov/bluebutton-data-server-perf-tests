@@ -4,7 +4,7 @@ import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
 import org.hl7.fhir.dstu3.model.Patient;
 
 import gov.hhs.cms.bluebutton.fhirstress.utils.BenefitIdManager;
-import gov.hhs.cms.bluebutton.fhirstress.utils.CsvBenefitIdManager;
+import gov.hhs.cms.bluebutton.fhirstress.utils.BenefitIdMgr;
 
 /**
  * This JMeter sampler will run query for a FHIR {@link Patient} using the
@@ -19,7 +19,7 @@ public final class RetrievePatients extends CustomSamplerClient {
 	@Override
 	public void setupTest(JavaSamplerContext context) {
 		super.setupTest(context);
-		bim = new CsvBenefitIdManager();
+		bim = new BenefitIdMgr(1, 1, 10000, "200000000", "%05d");
 	}
 
 	/**
