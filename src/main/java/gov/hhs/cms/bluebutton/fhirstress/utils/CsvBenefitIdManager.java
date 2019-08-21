@@ -6,7 +6,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -26,6 +25,7 @@ public class CsvBenefitIdManager implements BenefitIdManager {
 	}
 
 	public CsvBenefitIdManager(String prefix) {
+		System.out.println("new CsvBenefitIdManager created.");
 		f = Paths.get("/usr/local/bluebutton-jmeter-service/" + (Strings.isNullOrEmpty(prefix) ? "" : prefix + "-")
 				+ "bene-ids.csv").toFile();
 		try {
@@ -52,17 +52,19 @@ public class CsvBenefitIdManager implements BenefitIdManager {
 
 	@Override
 	public String nextId() { 
-		CSVRecord r;
-		try {
-			r = i.next();
-		} catch (NoSuchElementException e) {
-			// If we get an exception here it's likely that we hit the end of file
-			// So I want to restart from the beginning of the file.
-			init();
-			r = i.next();
-		}
+//		CSVRecord r;
+//		try {
+//			r = i.next();
+//		} catch (NoSuchElementException e) {
+//			// If we get an exception here it's likely that we hit the end of file
+//			// So I want to restart from the beginning of the file.
+//			init();
+//			r = i.next();
+//		}
+//
+//		return r.get(0);
 
-		return r.get(0);
+		return "12162";
 	}
 
 }
