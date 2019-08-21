@@ -12,21 +12,36 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import com.google.common.base.Strings;
-
 public class CsvBenefitIdManager implements BenefitIdManager {
 	CSVParser parser;
 	Iterator<String> i;
 	File f;
-	ArrayList<String> idList;
+	private static ArrayList<String> idList;
+
+	static {
+		try {
+			File f = Paths.get("/usr/local/bluebutton-jmeter-service/bene-ids.csv").toFile();
+			CSVParser parser = CSVParser.parse(f, Charset.defaultCharset(), CSVFormat.DEFAULT);
+			idList = new ArrayList<String>();
+			for (CSVRecord record : parser.getRecords()) {
+				idList.add(record.get(0));
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public CsvBenefitIdManager() {
 		this("");
 	}
 
 	public CsvBenefitIdManager(String prefix) {
-		f = Paths.get("/usr/local/bluebutton-jmeter-service/" + (Strings.isNullOrEmpty(prefix) ? "" : prefix + "-")
-				+ "bene-ids.csv").toFile();
+		init();
+	}
+
+	public CsvBenefitIdManager(File f) {
+		this.f = f;
 		try {
 			parser = CSVParser.parse(f, Charset.defaultCharset(), CSVFormat.DEFAULT);
 			idList = new ArrayList<String>();
@@ -36,11 +51,6 @@ public class CsvBenefitIdManager implements BenefitIdManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		init();
-	}
-
-	public CsvBenefitIdManager(File f) {
-		this.f = f;
 		init();
 	}
 
