@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.csv.CSVFormat;
@@ -16,22 +16,22 @@ import com.google.common.base.Strings;
 
 public class CsvBenefitIdManager implements BenefitIdManager {
 	CSVParser parser;
-	List<CSVRecord> list;
-	Iterator<CSVRecord> i;
+	Iterator<String> i;
 	File f;
-	int index = 0;
+	ArrayList<String> idList;
 
 	public CsvBenefitIdManager() {
 		this("");
 	}
 
 	public CsvBenefitIdManager(String prefix) {
-		System.out.println("new CsvBenefitIdManager created.");
 		f = Paths.get("/usr/local/bluebutton-jmeter-service/" + (Strings.isNullOrEmpty(prefix) ? "" : prefix + "-")
 				+ "bene-ids.csv").toFile();
 		try {
 			parser = CSVParser.parse(f, Charset.defaultCharset(), CSVFormat.DEFAULT);
-			list = parser.getRecords();
+			for (CSVRecord record : parser.getRecords()) {
+				idList.add(record.get(0));
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -45,7 +45,7 @@ public class CsvBenefitIdManager implements BenefitIdManager {
 
 	private void init() {
 		try {
-			i = list.iterator();
+			i = idList.iterator();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,7 +53,7 @@ public class CsvBenefitIdManager implements BenefitIdManager {
 
 	@Override
 	public String nextId() { 
-		CSVRecord r;
+		String r;
 		try {
 			r = i.next();
 		} catch (NoSuchElementException e) {
@@ -62,7 +62,7 @@ public class CsvBenefitIdManager implements BenefitIdManager {
 			init();
 			r = i.next();
 		}
-		return r.get(0);
+		return r;
 	}
 
 }
