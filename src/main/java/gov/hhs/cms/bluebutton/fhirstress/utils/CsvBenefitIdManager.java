@@ -29,6 +29,7 @@ public class CsvBenefitIdManager implements BenefitIdManager {
 				+ "bene-ids.csv").toFile();
 		try {
 			parser = CSVParser.parse(f, Charset.defaultCharset(), CSVFormat.DEFAULT);
+			idList = new ArrayList<String>();
 			for (CSVRecord record : parser.getRecords()) {
 				idList.add(record.get(0));
 			}
