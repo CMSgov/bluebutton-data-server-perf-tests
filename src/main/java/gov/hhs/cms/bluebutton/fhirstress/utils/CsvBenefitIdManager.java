@@ -62,10 +62,7 @@ public class CsvBenefitIdManager implements BenefitIdManager {
 			init();
 			r = i.next();
 		}
-//
-//		return r.get(0);
-
-		return "12162";
+		return r.get(0);
 	}
 
 }
