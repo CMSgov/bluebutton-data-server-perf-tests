@@ -28,6 +28,7 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -119,11 +120,13 @@ public final class FhirClient {
 			// initialize the ssl context
 			sslContext.init(kmf.getKeyManagers(), new TrustManager[] { tm }, new SecureRandom());
 
+			SSLConnectionSocketFactory ssl = new SSLConnectionSocketFactory(sslContext, NoopHostnameVerifier.INSTANCE);
+
 			// create a http client connection manager
 			PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager(
 					RegistryBuilder.<ConnectionSocketFactory>create()
 							.register("http", PlainConnectionSocketFactory.getSocketFactory())
-							.register("https", new SSLConnectionSocketFactory(sslContext)).build(),
+							.register("https", ssl).build(),
 					null, null, null, 5000, TimeUnit.MILLISECONDS);
 
 			// defaults to 2 concurrent and 20 max that will not be enough
