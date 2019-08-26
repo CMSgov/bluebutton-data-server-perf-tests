@@ -44,7 +44,7 @@
           </elementProp>
           <elementProp name="continue_forever" elementType="Argument">
             <stringProp name="Argument.name">continue_forever</stringProp>
-            <stringProp name="Argument.value">${__P(continue_forever,false)}</stringProp>
+            <stringProp name="Argument.value">${__P(continue_forever,true)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="thread_loops" elementType="Argument">
@@ -269,7 +269,8 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">C:\bit9prog\dev\projects\bluebutton-data-server-perf-tests\ansible\results\2018-11-28\12-46\log.jtl</stringProp>
+          <stringProp name="filename">C:\bit9prog\dev\downloads\log (25).jtl</stringProp>
+          <boolProp name="ResultCollector.success_only_logging">true</boolProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
@@ -341,7 +342,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">C:\bit9prog\dev\projects\bluebutton-data-server-perf-tests\ansible\results\2018-11-28\15-15\log.jtl</stringProp>
+          <stringProp name="filename">C:\bit9prog\dev\downloads\log (20).jtl</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
