@@ -45,7 +45,7 @@ stage('Prepare') {
 			sh 'cd ansible && ansible --version'
 
 			// Verify the play's syntax before we run it.
-			sh "cd ansible && ansible-playbook fhir-stress-test-temp-testers.yml -e \"target_env=test num_servers=${params.env_num_servers} test_duration=${test_duration} test_thread_count=${test_thread_count}\" --syntax-check"
+			sh "cd ansible && ansible-playbook fhir-stress-test-temp-testers.yml -e \"target_env=test num_servers=${params.env_num_servers} test_duration=${params.test_duration} test_thread_count=${params.test_thread_count}\" --syntax-check"
 		}
 	}
 }
@@ -95,7 +95,7 @@ stage('Test the Test ENV') {
 
 			node {
 				insideAnsibleContainer {
-					sh "cd ansible && ansible-playbook fhir-stress-test-temp-testers.yml -e \"target_env=test num_servers=${params.env_num_servers} test_duration=${test_duration} test_thread_count=${test_thread_count}\" --connection=paramiko"
+					sh "cd ansible && ansible-playbook fhir-stress-test-temp-testers.yml -e \"target_env=test num_servers=${params.env_num_servers} test_duration=${params.test_duration} test_thread_count=${params.test_thread_count}\" --connection=paramiko"
 				}
 			}
 		}
@@ -111,7 +111,7 @@ stage('Test the DPR ENV') {
 
 			node {
 				insideAnsibleContainer {
-					sh "cd ansible && ansible-playbook fhir-stress-test-temp-testers.yml -e \"target_env=dpr num_servers=${params.env_num_servers} test_duration=${test_duration} test_thread_count=${test_thread_count}\" --connection=paramiko"
+					sh "cd ansible && ansible-playbook fhir-stress-test-temp-testers.yml -e \"target_env=dpr num_servers=${params.env_num_servers} test_duration=${params.test_duration} test_thread_count=${params.test_thread_count}\" --connection=paramiko"
 				}
 			}
 		}
@@ -127,7 +127,7 @@ stage('Test the Prod ENV') {
 
 			node {
 				insideAnsibleContainer {
-					sh "cd ansible && ansible-playbook fhir-stress-test-temp-testers.yml -e \"target_env=prod num_servers=${params.env_num_servers} test_duration=${test_duration} test_thread_count=${test_thread_count}\" --connection=paramiko"
+					sh "cd ansible && ansible-playbook fhir-stress-test-temp-testers.yml -e \"target_env=prod num_servers=${params.env_num_servers} test_duration=${params.test_duration} test_thread_count=${params.test_thread_count}\" --connection=paramiko"
 				}
 			}
 		}
@@ -142,7 +142,7 @@ stage('Test the Staging ENV') {
 
 		node {
 			insideAnsibleContainer {
-				sh "cd ansible && ansible-playbook fhir-stress-test-temp-testers.yml -e \"target_env=staging num_servers=${params.env_num_servers} test_duration=${test_duration} test_thread_count=${test_thread_count}\" --connection=paramiko"
+				sh "cd ansible && ansible-playbook fhir-stress-test-temp-testers.yml -e \"target_env=staging num_servers=${params.env_num_servers} test_duration=${params.test_duration} test_thread_count=${params.test_thread_count}\" --connection=paramiko"
 			}
 		}
 	} else {
