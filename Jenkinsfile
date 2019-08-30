@@ -23,8 +23,8 @@ properties([
 		booleanParam(name: 'test_dpr', description: 'Whether to run the test against the DPR environment', defaultValue: false),
 		booleanParam(name: 'test_prod', description: 'Whether to run the test against the Prod environment', defaultValue: false),
 		booleanParam(name: 'test_staging', description: 'Whether to run the test against the Prod Copy (staging) environment', defaultValue: false),
-		string(name: 'env_num_servers', description: 'Number of JMeter Servers to use in the test.', defaultValue: '1')
-		string(name: 'test_duration', description: 'Duration of test in seconds.', defaultValue: '60')
+		string(name: 'env_num_servers', description: 'Number of JMeter Servers to use in the test.', defaultValue: '1'),
+		string(name: 'test_duration', description: 'Duration of test in seconds.', defaultValue: '60'),
 		string(name: 'test_thread_count', description: 'Duration of test in seconds.', defaultValue: '4')
 	]),
 	buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: ''))
